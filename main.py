@@ -9,7 +9,7 @@ def main():
     password = getpass.getpass("Enter password: ")
     data = input("Enter data to encrypt: ").encode()
 
-    # Generate salt (store this securely in real systems)
+    # Generate salt
     salt = generate_salt()
 
     # Derive key using Hybrid KDF
@@ -18,7 +18,7 @@ def main():
     # Encrypt
     nonce, encrypted = encrypt_data(key, data)
 
-    # Decrypt (using same password)
+    # Decrypt
     key_for_decryption = hybrid_kdf(password, salt)
     decrypted = decrypt_data(key_for_decryption, nonce, encrypted)
 
